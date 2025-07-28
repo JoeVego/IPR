@@ -1,19 +1,27 @@
-package userInterface;
+package userInterface.webdriver;
 
-import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import props.ReadProperties;
-import userInterface.webdriver.Driver;
 
+import java.time.Duration;
 
-public class OzonBucketNegativeTest{
-    FirefoxDriver driver = new FirefoxDriver();
+public class Driver {
+    private org.openqa.selenium.WebDriver driver;
 
+    public WebDriver getDriver(){
+        return driver;
+    }
+
+    /**
+     * Запуск драйвера
+     */
     public void driverInit(){
+        driver = new FirefoxDriver();
 
         driver.manage().window().maximize();
 
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
         //передача драйверу адреса открываемой страницы из файла настроек
         driver.get(ReadProperties.getProperty("homepage"));
@@ -23,12 +31,5 @@ public class OzonBucketNegativeTest{
         System.out.println("closed");
         //закрытие драйвера
         driver.quit();
-    }
-
-    @Test
-    public void mainTest() {
-        Driver ds = new Driver();
-        ds.driverInit();
-        System.out.println("println");
     }
 }
