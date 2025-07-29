@@ -7,28 +7,12 @@ import userInterface.webdriver.Driver;
 
 
 public class OzonBucketNegativeTest{
-    FirefoxDriver driver = new FirefoxDriver();
-
-    public void driverInit(){
-
-        driver.manage().window().maximize();
-
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-
-        //передача драйверу адреса открываемой страницы из файла настроек
-        driver.get(ReadProperties.getProperty("homepage"));
-    }
-
-    public void driverTearDown(){
-        System.out.println("closed");
-        //закрытие драйвера
-        driver.quit();
-    }
 
     @Test
     public void mainTest() {
         Driver ds = new Driver();
         ds.driverInit();
+        ds.getDriver().get("https://www.ozon.ru/");
         System.out.println("println");
     }
 }
