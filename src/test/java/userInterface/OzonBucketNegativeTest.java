@@ -14,5 +14,6 @@ public class OzonBucketNegativeTest{
         ds.driverInit();
         ds.getDriver().get("https://www.ozon.ru/");
         System.out.println("println");
+        ds.driverTearDown();
     }
 }
