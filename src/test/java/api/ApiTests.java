@@ -13,4 +13,9 @@ public class ApiTests {
     public void getWithParams(){
         RaRequests.getUserInfo();
     }
+
+    @Test
+    public void getCars(){
+        ApacheRequests.getCars();
+    }
 }

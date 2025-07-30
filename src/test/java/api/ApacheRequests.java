@@ -10,15 +10,16 @@ import java.io.IOException;
 
 class ApacheRequests {
 
-    public Response getCars(){
+    public static Response getCars(){
         try (CloseableHttpClient closeableHttpClient = HttpClients.createDefault()) {
 
             HttpGet httpGet = new HttpGet("http://82.142.167.37:4879/cars");
 
-            closeableHttpClient.execute(httpGet);
-
-            int responseCode = closeableHttpClient.execute(httpGet,
-                    httpResponse -> httpResponse.getStatusLine().getStatusCode());
+            jsonObj ?
+            String responseCode = closeableHttpClient.execute(httpGet,
+                    httpResponse -> httpResponse.toString());
+            System.out.println(responseCode);
+//                            getStatusLine().getStatusCode());
 
             String responseData = closeableHttpClient.execute(httpGet,
                     httpResponse -> EntityUtils.toString(httpResponse.getEntity()));
