@@ -16,4 +16,12 @@ public class Response {
     public Object getResponceObject() {
         return responceObject;
     }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "statusCode=" + statusCode +
+                ", responceObject=" + responceObject +
+                '}';
+    }
 }

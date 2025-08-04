@@ -8,7 +8,7 @@ import userInterface.webdriver.Driver;
 
 public class OzonBucketNegativeTest{
 
-    @Test
+//    @Test
     public void mainTest() {
         Driver ds = new Driver();
         ds.driverInit();

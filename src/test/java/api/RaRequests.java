@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 class RaRequests {
+    private static int id = 6890;
 
     /**
      * проверка гет запроса
@@ -16,18 +17,22 @@ class RaRequests {
         .then()
                 .assertThat()
                 .statusCode(200)
-                .body("[0].id.toString()", equalTo("6872"));
+                .body("[0].id", equalTo(id));
     }
 
-    static void getUserInfo(){
+    static void getUserInfo(int id){
         given()
                 .header("accept", "application/json")
         .when()
-                .get("http://82.142.167.37:4879/user/6872/info")
+                .get("http://82.142.167.37:4879/user/" + id + "/info")
         .then()
                 .assertThat()
                 .statusCode(200)
                 .body("cars[0].model.toString()",
                         equalTo("TestModel"));
+    }
+
+    public static int getId(){
+        return id;
     }
 }
