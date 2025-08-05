@@ -1,19 +1,17 @@
 package api;
 
+import api.data.Car;
+import api.data.Response;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.apache.http.HttpEntity;
 import org.apache.http.ParseException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.HttpEntityWrapper;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -22,7 +20,7 @@ class ApacheRequests {
     static Car mazda_rx7;
 
     static {
-        mazda_rx7 = new Car("Rotary",9811, "Mazda", "RX-7", new BigDecimal(7_000_000));
+        mazda_rx7 = new Car("Diesel",9811, "Mazda", "RX-7", new BigDecimal(7_000_000));
     }
 
     public static Response getCars(){
@@ -58,7 +56,6 @@ class ApacheRequests {
             HttpPost httpPost = new HttpPost("http://82.142.167.37:4879/car");
             httpPost.setHeader("accept", "application/json");
             httpPost.setHeader("Content-Type", "application/json");
-//            httpPost.setEntity(carStr);
             StringEntity carStrEnt = new StringEntity(carStr);
             httpPost.setEntity(carStrEnt);
 

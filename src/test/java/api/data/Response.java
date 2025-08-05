@@ -1,27 +1,27 @@
-package api;
+package api.data;
 
 public class Response {
     private int statusCode;
-    private Object responceObject;
+    private Object responceBody;
 
     public Response(int statusCode, Object responceObj) {
         this.statusCode = statusCode;
-        this.responceObject = responceObj;
+        this.responceBody = responceObj;
     }
 
     public int getStatusCode() {
         return statusCode;
     }
 
-    public Object getResponceObject() {
-        return responceObject;
+    public Object getResponceBody() {
+        return responceBody;
     }
 
     @Override
     public String toString() {
         return "Response{" +
                 "statusCode=" + statusCode +
-                ", responceObject=" + responceObject +
+                ", responceObject=" + responceBody +
                 '}';
     }
 }
