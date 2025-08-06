@@ -2,26 +2,26 @@ package api.data;
 
 public class Response {
     private int statusCode;
-    private Object responceBody;
+    private Object responseBody;
 
-    public Response(int statusCode, Object responceObj) {
+    public Response(int statusCode, Object responseObj) {
         this.statusCode = statusCode;
-        this.responceBody = responceObj;
+        this.responseBody = responseObj;
     }
 
     public int getStatusCode() {
         return statusCode;
     }
 
-    public Object getResponceBody() {
-        return responceBody;
+    public Object getResponseBody() {
+        return responseBody;
     }
 
     @Override
     public String toString() {
         return "Response{" +
                 "statusCode=" + statusCode +
-                ", responceObject=" + responceBody +
+                ", responseObject=" + responseBody +
                 '}';
     }
 }
