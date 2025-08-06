@@ -1,6 +1,7 @@
 package userInterface;
 
-import org.junit.Test;
+//import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import props.ReadProperties;
 import userInterface.webdriver.Driver;

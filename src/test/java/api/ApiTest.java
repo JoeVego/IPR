@@ -11,7 +11,7 @@ import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
 
-public class ApiTests {
+public class ApiTest {
 
     Car mazda_rx7;
     User someUser;
