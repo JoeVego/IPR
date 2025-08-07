@@ -25,19 +25,19 @@ public class ApiTest {
 
     @Tag("Users")
     @Test
-    public void getUsersTest(){
+    public void testGetUsers(){
         RaRequests.getUsers();
     }
 
     @Tag("Users")
     @Test
-    public void getWithParamsTest(){
+    public void testGetWithParams(){
         RaRequests.getUserInfo(RaRequests.getId());
     }
 
     @Tag("Cars")
     @Test
-    public void getCarsTest(){
+    public void testGetCars(){
         response = ApacheRequests.getCars();
         Assertions.assertNotNull(response);
 
@@ -51,7 +51,7 @@ public class ApiTest {
 
     @Tag("Cars")
     @Test
-    public void addCarTest(){
+    public void testAddCar(){
         response = ApacheRequests.addCar(mazda_rx7);
 
         Assertions.assertNotNull(response);
@@ -60,7 +60,7 @@ public class ApiTest {
 
     @Tag("Users")
     @Test
-    public void putUserTest(){
+    public void testPutUser(){
         response = ApacheRequests.putUser(someUser);
 
         Assertions.assertNotNull(response);
