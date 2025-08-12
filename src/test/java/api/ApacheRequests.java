@@ -6,6 +6,7 @@ import api.data.User;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import io.qameta.allure.Allure;
 import org.apache.http.ParseException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -28,10 +29,14 @@ class ApacheRequests {
             HttpGet httpGetCars = new HttpGet("http://82.142.167.37:4879/cars");
 
             try (CloseableHttpResponse closeableResp = closeableHttpClient.execute(httpGetCars)) {
+                Allure.step("Гет запрос выполнен");
 
                 response = new Response(closeableResp.getStatusLine().getStatusCode(),
                         EntityUtils.toString(closeableResp.getEntity()));
+                Allure.step("ответ сохранен");
+
             }catch (IOException | ParseException exception) {
+                Allure.step("ошибка выполнения запроса");
                 exception.printStackTrace();
                 return null;
             }
@@ -49,6 +54,7 @@ class ApacheRequests {
         try (CloseableHttpClient closeableHttpClient = HttpClients.createDefault()) {
             Gson carJson = new GsonBuilder().setPrettyPrinting().create();
             String carStr = carJson.toJson(newCar);
+            Allure.step("Создан объект для сравнения");
 
             HttpPost httpPost = new HttpPost("http://82.142.167.37:4879/car");
             httpPost.setHeader("accept", "application/json");
@@ -57,10 +63,14 @@ class ApacheRequests {
             httpPost.setEntity(carStrEnt);
 
             try (CloseableHttpResponse closeableResp = closeableHttpClient.execute(httpPost)) {
+                Allure.step("Пост запрос выполнен");
 
                 response = new Response(closeableResp.getStatusLine().getStatusCode(),
                         EntityUtils.toString(closeableResp.getEntity()));
+                Allure.step("ответ сохранен");
+
             }catch (IOException | ParseException exception) {
+                Allure.step("ошибка выполнения запроса");
                 exception.printStackTrace();
                 return null;
             }
@@ -87,12 +97,15 @@ class ApacheRequests {
             httpPut.setEntity(userEnt);
 
             try (CloseableHttpResponse closeableResp = closeableHttpClient.execute(httpPut)) {
+                Allure.step("Пут запрос выполнен");
 
                 response = new Response(
                         closeableResp.getStatusLine().getStatusCode(),
                         EntityUtils.toString(closeableResp.getEntity()));
+                Allure.step("ответ сохранен");
 
             }catch (IOException | ParseException exception) {
+                Allure.step("ошибка выполнения запроса");
                 exception.printStackTrace();
                 return null;
             }

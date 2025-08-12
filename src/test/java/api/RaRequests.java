@@ -1,15 +1,16 @@
 package api;
 
+import io.qameta.allure.Allure;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 class RaRequests {
-    private static int id = 6890;
 
     /**
      * проверка гет запроса
      */
-    static void getUsers(){
+    static void getUsers(int id){
         given()
                 .header("accept", "application/json")
         .when()
@@ -18,6 +19,7 @@ class RaRequests {
                 .assertThat()
                 .statusCode(200)
                 .body("[0].id", equalTo(id));
+        Allure.step("вызов метода успешен");
     }
 
     static void getUserInfo(int id){
@@ -30,9 +32,6 @@ class RaRequests {
                 .statusCode(200)
                 .body("cars[0].model.toString()",
                         equalTo("TestModel"));
-    }
-
-    public static int getId(){
-        return id;
+        Allure.step("api method call successful");
     }
 }

@@ -18,23 +18,14 @@ public class Car {
         this.price = price;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getMark() {
-        return mark;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getEngineType() {
-        return engineType;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
+    @Override
+    public String toString() {
+        return "Car{" +
+                "engineType='" + engineType + '\'' +
+                ", id=" + id +
+                ", mark='" + mark + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
