@@ -11,14 +11,13 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.util.Arrays;
 
+@Epic("Апи тесты")
+@Feature("Свой полигон апи 1 ссылка сваггер")
 public class ApiTest {
 
     private Car mazda_rx7;
@@ -42,6 +41,7 @@ public class ApiTest {
     @Tag("RestAssured")
     @Description("Проверка получения списка пользователей")
     @Owner("Lupa")
+    @DisplayName("Проверка получения списка пользователей")
     @Test
     public void testGetUsers(){
         Allure.step("starting test get user");
@@ -54,6 +54,8 @@ public class ApiTest {
     @Tag("RestAssured")
     @Description("Проверка получения списка пользователей " +
             "запрос гет с параметром")
+    @DisplayName("Проверка получения списка пользователей " +
+            "запрос гет с параметром")
     @Owner("Pupa")
     @Test
     public void testGetWithParams(){
@@ -64,6 +66,8 @@ public class ApiTest {
     @Tag("Cars")
     @Tag("Apache http")
     @Description("Проверка получения списка авто" +
+            "парсинг джейсона")
+    @DisplayName("Проверка получения списка авто" +
             "парсинг джейсона")
     @Test
     public void testGetCars(){
@@ -82,6 +86,8 @@ public class ApiTest {
     @Tag("Apache http")
     @Description("Проверка добавления авто" +
             "запрос с телом джейсоном")
+    @DisplayName("Проверка добавления авто" +
+            "запрос с телом джейсоном")
     @Test
     public void testAddCar(){
         Allure.parameter("car", mazda_rx7);
@@ -95,6 +101,8 @@ public class ApiTest {
     @Tag("Apache http")
     @Description("Проверка получения списка авто" +
             "запрос пут")
+    @DisplayName("Проверка добавления авто" +
+            "запрос с телом джейсоном")
     @Test
     public void testPutUser(){
         Allure.parameter("user", someUser);
@@ -111,20 +119,17 @@ public class ApiTest {
             try {
                 Allure.addAttachment("File", new FileInputStream("allure-results/filename.txt"));
             } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+                System.out.println("Файл не найден");
             }
         }
     }
 
-    private String toFile(String text){
+    private void toFile(String text){
         try (PrintWriter out = new PrintWriter("allure-results/filename.txt")) {
             out.println(text);
         }
         catch (FileNotFoundException fnExc){
             fnExc.printStackTrace();
-            return null;
         }
-
-        return null;
     }
 }
