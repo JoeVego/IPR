@@ -3,7 +3,6 @@ package userInterface.webdriver;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class Driver {
     private WebDriver driver;
@@ -12,9 +11,14 @@ public class Driver {
         return driver;
     }
 
-    /**
-     * Запуск драйвера
-     */
+    public Driver() {
+        driver = new FirefoxDriver();
+        Allure.step("driver initialized");
+
+        driver.manage().window().maximize();
+    }
+
+    @Deprecated
     public void driverInit(){
 //        FirefoxOptions options = new FirefoxOptions();
 //        options.addArguments("--disable-blink-features=AutomationControlled");
@@ -23,7 +27,6 @@ public class Driver {
 //        options.addArguments("--headless");
 
         driver = new FirefoxDriver();
-        Allure.step("driver initialized");
 
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
@@ -32,6 +35,7 @@ public class Driver {
         driver.manage().window().maximize();
     }
 
+    @Deprecated
     public void driverTearDown(){
         driver.quit();
         Allure.step("driver closed");
