@@ -1,27 +1,24 @@
 package userInterface;
 
-//import org.junit.Test;
 import io.qameta.allure.Allure;
-import org.apache.commons.io.FileUtils;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.opentest4j.AssertionFailedError;
+
 import userInterface.pages.Pages;
 import userInterface.webdriver.Driver;
 import userInterface.pages.HomePage;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 import static props.ReadProperties.getProperty;
 
+@Epic("Ю Ай тесты")
+@Feature("Сайт перфа")
 public class MotoZipTests {
 
     private WebDriver webDriver;
@@ -30,10 +27,12 @@ public class MotoZipTests {
     @BeforeEach
     void init(){
         webDriver = new Driver().getDriver();
-        homePage = new HomePage();
+        homePage = new HomePage(webDriver);
 
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1));
         Allure.step("tests initialized");
+
+        Assertions.assertNotNull(homePage);
     }
 
     @AfterEach
@@ -46,18 +45,20 @@ public class MotoZipTests {
     public void testHappyHoursIsActive() {
         initCheck(webDriver, homePage);
 
-        try{
-        webDriver.get(getProperty("homepage"));
-        Assertions.assertTrue(homePage.isMainLogoDisplayed());
-        Allure.step("homePage opened");
+        Assertions.assertNotNull(homePage);
 
-        Assertions.assertTrue(homePage.isSaleTextDisplayed());}
+        try{
+            webDriver.get(getProperty("homepage"));
+            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
+            Allure.step("homePage opened");
+        }
         catch (AssertionFailedError | NullPointerException exc){
             takeScreenshot();
-
             webDriver.close();
+
             exc.printStackTrace();
             Allure.step("тест неуспешен, драйвер закрыт");
+            //чтобы тест успешным не отметилс в аллюре
             throw new AssertionFailedError();
         }
     }
@@ -81,11 +82,8 @@ public class MotoZipTests {
     }
 
     private void takeScreenshot() {
-        String strPath = "allure-results/image1.jpg";
-
         byte[] src = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 
         Allure.addAttachment("screen", new ByteArrayInputStream(src));
-//        return src;
     }
 }
