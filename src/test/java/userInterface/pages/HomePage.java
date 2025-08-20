@@ -10,13 +10,24 @@ import java.util.List;
 
 public class HomePage implements Pages{
 
-    WebDriver webDriver;
+    private WebDriver webDriver;
 
     @FindBy(xpath = "//img[@alt='Перфоманс Лаб логотип']")
     private WebElement mainPageHeader;
 
     @FindBy(xpath = "//li[@id='mega-menu-item-24182']/a[text()='Блог']")
     private WebElement blogButton;
+
+    //локатор можно укоротить, оставиви только вторую часть,
+    // но пробовал такие искпасы писать
+    @FindBy(xpath = "//a[@href='#requestOrder']//span[text()='Заказать услугу']")
+    private WebElement orderButton;
+
+    @FindBy(xpath = "//li[@id='mega-menu-item-1619']/a")
+    private WebElement careerButton;
+
+    @FindBy(xpath = "//a[@href='/vacancy']")
+    private WebElement vacancyButton;
 
     public HomePage(WebDriver driver) {
         webDriver = driver;
@@ -29,5 +40,17 @@ public class HomePage implements Pages{
 
     public void blogButtonClick(){
         blogButton.click();
+    }
+
+    public void orderButtonClick(){
+        orderButton.click();
+    }
+
+    public void careerButtonClick(){
+        careerButton.click();
+    }
+
+    public void vacancyButtonClick(){
+        vacancyButton.click();
     }
 }
