@@ -66,7 +66,7 @@ public class OrderWindow {
 
     public void setAgreementCheckboxTrue(){
         agreementCheckBox.click();
-    };
+    }
 
     public void sendButtonClick(){
         sendButton.click();

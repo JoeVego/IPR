@@ -4,11 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
-
-public class HomePage implements Pages{
+public class HomePage{
 
     private WebDriver webDriver;
 
@@ -19,7 +16,7 @@ public class HomePage implements Pages{
     private WebElement blogButton;
 
     //локатор можно укоротить, оставиви только вторую часть,
-    // но пробовал такие искпасы писать
+    // но пробовал искпасы писать по вложенным элементам
     @FindBy(xpath = "//a[@href='#requestOrder']//span[text()='Заказать услугу']")
     private WebElement orderButton;
 
@@ -28,6 +25,15 @@ public class HomePage implements Pages{
 
     @FindBy(xpath = "//a[@href='/vacancy']")
     private WebElement vacancyButton;
+
+    @FindBy(xpath = "//a[text()='Услуги и продукты']")
+    private WebElement productsButton;
+
+    @FindBy(xpath = "//a[text()='Внедрение DevOps']")
+    private WebElement devopsButton;
+
+    @FindBy(xpath = "//a[text()='Кейсы']")
+    private WebElement casesButton;
 
     public HomePage(WebDriver driver) {
         webDriver = driver;
@@ -53,4 +59,14 @@ public class HomePage implements Pages{
     public void vacancyButtonClick(){
         vacancyButton.click();
     }
+
+    public void productsButtonClick(){
+        productsButton.click();
+    }
+
+    public void devopsButtonClick(){
+        devopsButton.click();
+    }
+
+    public void casesButtonClick(){casesButton.click();}
 }

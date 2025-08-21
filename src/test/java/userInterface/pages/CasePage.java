@@ -1,0 +1,47 @@
+package userInterface.pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class CasePage {
+    private WebDriver webDriver;
+
+    @FindBy(xpath = "//h1[text()='Кейсы']")
+    private WebElement casesHeader;
+
+    @FindBy(xpath = "//input[@class='uc-search-filter__input']")
+    private WebElement searchField;
+
+    @FindBy(xpath = "//img[@alt='search icon']")
+    private WebElement searchIcon;
+
+    public CasePage(WebDriver driver) {
+        webDriver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public boolean isCasesHeaderDisplayed(){
+        return casesHeader.isDisplayed();
+    }
+
+    public void enterSearchText(String searchText){
+        searchField.sendKeys(searchText);
+    }
+
+    public void searchClick(){
+        searchIcon.click();
+    }
+
+    public int checkSearchResults(){
+        By selector = By.xpath(
+                "//div[@class='" +
+                        "uc_post_grid_style_one_item ue_post_grid_item " +
+                        "ue-item elementor-animation-grow']");
+
+        return webDriver.findElements(selector).size();
+    }
+
+}
