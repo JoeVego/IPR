@@ -28,12 +28,12 @@ public class ApiTest {
 
     @BeforeEach
     void init() {
-        mazda_rx7 = new Car("Diesel",9811,
+        mazda_rx7 = new Car("Diesel",98111,
                 "Mazda", "RX-7", new BigDecimal(7_000_000));
         someUser = new User(21, "Joe",
                 991, new BigDecimal("2334.4"), "Vego", UserSex.MALE);
         id = 6890;
-        userId = 2759;
+        userId = 10681;
         Allure.step("init values success");
     }
 
@@ -76,10 +76,10 @@ public class ApiTest {
 
         String respData = (String) response.getResponseBody();
         JsonElement jsonElement = JsonParser.parseString(respData);
-        System.out.println(jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark"));
 
         Assertions.assertEquals(response.getStatusCode(), 200);
-        Assertions.assertEquals("Nissan", jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
+        Assertions.assertEquals("Volvo",
+                jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
     }
 
     @Tag("Cars")
