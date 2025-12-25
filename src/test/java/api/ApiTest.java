@@ -33,7 +33,7 @@ public class ApiTest {
         someUser = new User(21, "Joe",
                 991, new BigDecimal("2334.4"), "Vego", UserSex.MALE);
         id = 6890;
-        userId = 10681;
+        userId = 7179;
         Allure.step("init values success");
     }
 
