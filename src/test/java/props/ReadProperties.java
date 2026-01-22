@@ -19,7 +19,8 @@ public class ReadProperties {
             PROPERTIES = new Properties();
             PROPERTIES.load(fileInputStream);
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.exit(3);
         } finally {
             //закрытие файла
             if (fileInputStream != null)

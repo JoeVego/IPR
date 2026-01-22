@@ -218,7 +218,7 @@ public class PerfomanceLabTests {
             Assertions.assertTrue(casePage.isCasesHeaderDisplayed());
             Allure.step("Перешли на страницы кейсов");
 
-            casePage.enterSearchText("ЦФТ");
+            casePage.enterSearchText("диверсифицированной");
             casePage.searchClick();
             Allure.step("Выполнили поиск по кейсам");
 
