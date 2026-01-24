@@ -75,8 +75,7 @@ public class PerfomanceLabTests {
             webDriver.close();
 
             exc.printStackTrace();
-            Allure.step("тест неуспешен, драйвер закрыт");
-            throw new AssertionFailedError();
+            throw new AssertionFailedError("тест неуспешен, драйвер закрыт");
         }
     }
 
@@ -117,8 +116,7 @@ public class PerfomanceLabTests {
             webDriver.close();
 
             exc.printStackTrace();
-            Allure.step("тест неуспешен, драйвер закрыт");
-            throw new AssertionFailedError();
+            throw new AssertionFailedError("тест неуспешен, драйвер закрыт");
         }
     }
 
@@ -151,8 +149,7 @@ public class PerfomanceLabTests {
             webDriver.close();
 
             exc.printStackTrace();
-            Allure.step("тест неуспешен, драйвер закрыт");
-            throw new AssertionFailedError();
+            throw new AssertionFailedError("тест неуспешен, драйвер закрыт");
         }
     }
 
@@ -196,8 +193,7 @@ public class PerfomanceLabTests {
             webDriver.close();
 
             exc.printStackTrace();
-            Allure.step("тест неуспешен, драйвер закрыт");
-            throw new AssertionFailedError();
+            throw new AssertionFailedError("тест неуспешен, драйвер закрыт");
         }
     }
 
@@ -231,8 +227,7 @@ public class PerfomanceLabTests {
             webDriver.close();
 
             exc.printStackTrace();
-            Allure.step("тест неуспешен, драйвер закрыт");
-            throw new AssertionFailedError();
+            throw new AssertionFailedError("тест неуспешен, драйвер закрыт");
         }
     }
     @Tag("UI")
@@ -256,8 +251,7 @@ public class PerfomanceLabTests {
             webDriver.close();
 
             exc.printStackTrace();
-            Allure.step("тест неуспешен, драйвер закрыт");
-            throw new AssertionFailedError();
+            throw new AssertionFailedError("тест неуспешен, драйвер закрыт");
         }
     }
 

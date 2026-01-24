@@ -44,9 +44,12 @@ public class ApiTest {
     @DisplayName("Проверка получения списка пользователей")
     @Test
     public void testGetUsers(){
-        Allure.step("starting test get user");
-        Allure.parameter("userID", userId);
-        RaRequests.getUsers(userId);
+//        Allure.parameter("userID", userId);
+        Allure.step("starting test get user", () -> {
+            Allure.parameter("userID", userId);
+            RaRequests.getUsers(userId);
+        });
+//        RaRequests.getUsers(userId);
         Allure.step("test run successful");
     }
 
@@ -60,11 +63,14 @@ public class ApiTest {
     @Test
     public void testGetWithParams(){
         Allure.parameter("ID", id);
-        RaRequests.getUserInfo(id);
+        Allure.step("test get user info", () -> {
+            RaRequests.getUserInfo(id);;
+        });
+//        RaRequests.getUserInfo(id);
     }
 
     @Tag("Cars")
-    @Tag("Apache http")
+    @Tag("Apache_http")
     @Description("Проверка получения списка авто" +
             "парсинг джейсона")
     @DisplayName("Проверка получения списка авто" +
@@ -73,17 +79,21 @@ public class ApiTest {
     public void testGetCars(){
         response = ApacheRequests.getCars();
         Assertions.assertNotNull(response);
-
         String respData = (String) response.getResponseBody();
         JsonElement jsonElement = JsonParser.parseString(respData);
 
-        Assertions.assertEquals(response.getStatusCode(), 200);
-        Assertions.assertEquals("Volvo",
-                jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
+        Allure.step("is equals ?", () -> {
+            Assertions.assertEquals(response.getStatusCode(), 200);
+            Assertions.assertEquals("Volvo",
+                    jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
+        });
+//        Assertions.assertEquals(response.getStatusCode(), 200);
+//        Assertions.assertEquals("Volvo",
+//                jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
     }
 
     @Tag("Cars")
-    @Tag("Apache http")
+    @Tag("Apache_http")
     @Description("Проверка добавления авто" +
             "запрос с телом джейсоном")
     @DisplayName("Проверка добавления авто" +
@@ -98,7 +108,7 @@ public class ApiTest {
     }
 
     @Tag("Users")
-    @Tag("Apache http")
+    @Tag("Apache_http")
     @Description("Проверка получения списка авто" +
             "запрос пут")
     @DisplayName("Проверка добавления авто" +

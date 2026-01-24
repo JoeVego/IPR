@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class BlogPage {
 
@@ -36,6 +40,8 @@ public class BlogPage {
     }
 
     public void pickAutomatization(){
+        WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(searchListAuto));
         searchListAuto.click();
     }
 
