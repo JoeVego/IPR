@@ -50,24 +50,31 @@ public class PerfomanceLabTests {
     @Tag("UI")
     @Tag("Blog")
     @Description("Проверка поиска в блоге")
-    @Owner("Vupsen'")
+    @Owner("Vupsen")
     @DisplayName("Проверка поиска в блоге")
     @Test
     public void testBlogSearch() {
 
         try{
-            webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
-            Allure.step("homePage opened");
 
-            homePage.blogButtonClick();
-            Assertions.assertTrue(blogPage.isHeaderDisplayed());
-            Allure.step("Открылась страница блога");
+            Allure.step("Открытие главной страницы", () -> {
+                webDriver.get(getProperty("homepage"));
+                Assertions.assertTrue(homePage.isNewsHeadDisplayed());
+                Allure.step("homePage opened");
+            });
 
-            blogPage.pickAutomatization();
-            Allure.step("В списке выбрана Автоматизация");
-            Assertions.assertTrue(blogPage.isAtTagVisible());
-            Allure.step("Тэг автоматизации отображается в первой карточке поиска");
+            Allure.step("открытие страницы блога", () -> {
+                homePage.blogButtonClick();
+                Assertions.assertTrue(blogPage.isHeaderDisplayed());
+                Allure.step("нажали на кнопку блога");
+            });
+
+            Allure.step("проверка выбора тематики АТ", () -> {
+                blogPage.pickAutomatization();
+                Allure.step("В списке выбрана Автоматизация");
+                Assertions.assertTrue(blogPage.isAtTagVisible());
+                Allure.step("Тэг автоматизации отображается в первой карточке поиска");
+            });
         }
         catch (AssertionFailedError | NullPointerException
                | ElementNotInteractableException exc){
@@ -82,33 +89,54 @@ public class PerfomanceLabTests {
     @Tag("UI")
     @Tag("Order")
     @Description("Проверка полей на форме заказа")
-    @Owner("Pupsen'")
+    @Owner("Pupsen")
     @DisplayName("Проверка полей на форме заказа")
     @Test
     public void testRequiredFieldsCheck() {
 
         try{
-            webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
-            Allure.step("homePage opened");
+            Allure.step("Открытие главной страницы", () -> {
+                webDriver.get(getProperty("homepage"));
+                Assertions.assertTrue(homePage.isNewsHeadDisplayed());
+                Allure.step("homePage opened");
+            });
 
-            homePage.orderButtonClick();
-            Assertions.assertTrue(orderWindow.isOrderHeaderDisplayed());
-            Allure.step("Открыто окно заказа");
+            Allure.step("Открытие окна заказа", () -> {
+                homePage.orderButtonClick();
+                Assertions.assertTrue(orderWindow.isOrderHeaderDisplayed());
+                Allure.step("нажали кнопку заказа");
+            });
 
-            orderWindow.setAgreementCheckboxTrue();
-            Allure.step("чекбокс согласия установлен");
+            Allure.step("Выбрать согласие", () -> {
+                orderWindow.setAgreementCheckboxTrue();
+                Allure.step("чекбокс согласия установлен");
+            });
 
-            Allure.step("провека подсказок");
-            Assertions.assertTrue(orderWindow.isEmailFiledTipDisplayed());
-            Assertions.assertTrue(orderWindow.isNameFiledTipDisplayed());
-            Assertions.assertTrue(orderWindow.isOrgFiledTipDisplayed());
-            Assertions.assertTrue(orderWindow.isPhoneFiledTipDisplayed());
-            Allure.step("все подсказки присутствуют");
+            Allure.step("Проверка подсказок", () -> {
+                Allure.step("Проверка емаил", () -> {
+                    Assertions.assertTrue(orderWindow.isEmailFiledTipDisplayed());
+                    Allure.step("емаил на месте");
+                });
+                Allure.step("Проверка имени", () -> {
+                    Assertions.assertTrue(orderWindow.isNameFiledTipDisplayed());
+                    Allure.step("имя на месте");
+                });
+                Allure.step("Проверка орг", () -> {
+                    Assertions.assertTrue(orderWindow.isOrgFiledTipDisplayed());
+                    Allure.step("орг на месте");
+                });
+                Allure.step("Проверка телефона", () -> {
+                    Assertions.assertTrue(orderWindow.isPhoneFiledTipDisplayed());
+                    Allure.step("телефон на месте");
+                });
+                Allure.step("все подсказки присутствуют");
+            });
 
-            orderWindow.sendButtonClick();
-            orderWindow.isMainTipDisplayed();
-            Allure.step("Основная проверка присутствует");
+            Allure.step("Главная подсказка на месте", () -> {
+                orderWindow.sendButtonClick();
+                orderWindow.isMainTipDisplayed();
+                Allure.step("Основная проверка присутствует");
+            });
         }
         catch (AssertionFailedError | NullPointerException
                | ElementNotInteractableException exc){
@@ -129,19 +157,25 @@ public class PerfomanceLabTests {
     public void testVacancySearch() {
 
         try{
-            webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
-            Allure.step("homePage opened");
+            Allure.step("Открытие главной страницы", () -> {
+                webDriver.get(getProperty("homepage"));
+                Assertions.assertTrue(homePage.isNewsHeadDisplayed());
+                Allure.step("homePage opened");
+            });
 
-            homePage.careerButtonClick();
-            homePage.vacancyButtonClick();
-            vacancyPage.isVacancyHeaderDisplayed();
-            Allure.step("Открыта страница вакансий");
+            Allure.step("Открытие страницы вакансий", () -> {
+                homePage.careerButtonClick();
+                homePage.vacancyButtonClick();
+                vacancyPage.isVacancyHeaderDisplayed();
+                Allure.step("Заголовок вакансий пристуствует");
+            });
 
-            vacancyPage.isAtVacanciesDisplayed();
-            //чтобы скрины были, а то при успехе 0 скринов в отчете)
-            takeScreenshot();
-            Allure.step("Вакансии Ат присутсвуют в Перфе");
+            Allure.step("А есть ли Ат вакансии ?", () -> {
+                vacancyPage.isAtVacanciesDisplayed();
+                //чтобы скрины были, а то при успехе 0 скринов в отчете)
+                takeScreenshot();
+                Allure.step("Вакансии Ат присутсвуют в Перфе");
+            });
         }
         catch (AssertionFailedError | NullPointerException
                | ElementNotInteractableException exc){
@@ -162,33 +196,43 @@ public class PerfomanceLabTests {
     public void testVkLinks() {
 
         try{
-            webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
-            Allure.step("homePage opened");
+            Allure.step("Открытие главной страницы", () -> {
+                webDriver.get(getProperty("homepage"));
+                Assertions.assertTrue(homePage.isNewsHeadDisplayed());
+                Allure.step("homePage opened");
+            });
 
-            homePage.productsButtonClick();
-            Allure.step("нажали на Услуги и продукты галвного меню");
-            homePage.devopsButtonClick();
-            Allure.step("выбрали пнукт Внедрение ДевОпс");
+            Allure.step("Навигация по меню", () -> {
+                homePage.productsButtonClick();
+                Allure.step("нажали на Услуги и продукты галвного меню");
+                homePage.devopsButtonClick();
+                Allure.step("выбрали пнукт Внедрение ДевОпс");
+            });
 
-            JavascriptExecutor jse = (JavascriptExecutor)webDriver;
-            jse.executeScript("window.scrollTo(0, 6700);");
-            waitInSeconds(5);
-            devopsPage.matreshkaButtonClick();
-            Allure.step("Нажали на ссылку матрешки");
+            Allure.step("Переход по ссылке матрешки", () -> {
+                JavascriptExecutor jse = (JavascriptExecutor)webDriver;
+                jse.executeScript("window.scrollTo(0, 6700);");
+                waitInSeconds(5);
+                Allure.step("Сделали скролл для подгрузки страницы");
+                devopsPage.matreshkaButtonClick();
+                Allure.step("Нажали на ссылку матрешки");
+            });
 
-            ArrayList<String> tabs2 = new ArrayList<>(webDriver.getWindowHandles());
-            webDriver.switchTo().window(tabs2.get(1));
-            Allure.step("Переключились на страницу матрешки");
+            Allure.step("Переключились на страницу матрешки", () -> {
+                ArrayList<String> tabs2 = new ArrayList<>(webDriver.getWindowHandles());
+                webDriver.switchTo().window(tabs2.get(1));
+            });
 
-            waitInSeconds(10);
-            Assertions.assertEquals(webDriver.getCurrentUrl(),
-                    "https://www.performance-lab.ru/itmatreshka/");
-            Allure.step("Страница матрешки открылась");
+            Allure.step("Проверка переключения на ссылку матрешки", () -> {
+                waitInSeconds(10);
+                Assertions.assertEquals(webDriver.getCurrentUrl(),
+                        "https://www.performance-lab.ru/itmatreshka/");
+                Allure.step("Страница матрешки открылась");
+            });
         }
         //можно заменить классом Exception, что и сделал далее по коду
         catch (AssertionFailedError | NullPointerException
-               | ElementNotInteractableException | InterruptedException exc){
+               | ElementNotInteractableException exc){
             takeScreenshot();
             webDriver.close();
 
@@ -206,21 +250,29 @@ public class PerfomanceLabTests {
     public void testCasesSearch() {
 
         try{
-            webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
-            Allure.step("homePage opened");
+            Allure.step("Открытие главной страницы", () -> {
+                webDriver.get(getProperty("homepage"));
+                Assertions.assertTrue(homePage.isNewsHeadDisplayed());
+                Allure.step("homePage opened");
+            });
 
-            homePage.casesButtonClick();
-            Assertions.assertTrue(casePage.isCasesHeaderDisplayed());
-            Allure.step("Перешли на страницы кейсов");
+            Allure.step("Переход на страницу кейсов", () -> {
+                homePage.casesButtonClick();
+                Assertions.assertTrue(casePage.isCasesHeaderDisplayed());
+                Allure.step("Перешли на страницу кейсов");
+            });
 
-            casePage.enterSearchText("диверсифицированной");
-            casePage.searchClick();
-            Allure.step("Выполнили поиск по кейсам");
+            Allure.step("Переход на страницу кейсов", () -> {
+                casePage.enterSearchText("диверсифицированной");
+                casePage.searchClick();
+                Allure.step("Выполнили поиск по кейсам");
+            });
 
-            waitInSeconds(3);
-            Assertions.assertEquals(1,casePage.checkSearchResults());
-            Allure.step("Найдена 1 статья о ЦФТ");
+            Allure.step("Переход на страницу кейсов", () -> {
+                waitInSeconds(3);
+                Assertions.assertEquals(1,casePage.checkSearchResults());
+                Allure.step("Найдена 1 статья о ЦФТ");
+            });
         }
         catch (Exception exc){
             takeScreenshot();
@@ -232,18 +284,22 @@ public class PerfomanceLabTests {
     }
     @Tag("UI")
     @Tag("Blog")
-    @Description("<Не привычно видеть зеленый аллюр отчет ")
-    @Owner("Vupsen'")
+    @Description("<Непривычно видеть зеленый аллюр отчет ")
+    @Owner("Vupsen")
     @DisplayName("Добавил реалистичности")
     @Test
     public void testFailed() {
 
         try{
-            webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
-            Allure.step("homePage opened");
+            Allure.step("Главное страницу открываем", () -> {
+                webDriver.get(getProperty("homepage"));
+                Assertions.assertTrue(homePage.isNewsHeadDisplayed());
+                Allure.step("homePage opened");
+            });
 
-            throw new AssertionFailedError();
+            Allure.step("Але хоп, падаем тут", () -> {
+                throw new AssertionFailedError();
+            });
         }
         catch (AssertionFailedError | NullPointerException
                | ElementNotInteractableException exc){

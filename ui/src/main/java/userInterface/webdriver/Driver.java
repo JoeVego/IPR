@@ -22,7 +22,6 @@ public class Driver {
     public void driverInit(){
 //        FirefoxOptions options = new FirefoxOptions();
 //        options.addArguments("--disable-blink-features=AutomationControlled");
-//        options.addArguments("--proxy-server={14.103.38.219:6666}");
 //        options.addArguments("--user-agent={Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36}");
 //        options.addArguments("--headless");
 

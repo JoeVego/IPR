@@ -127,13 +127,6 @@
             <version>3.5.3</version>
             <type>maven-plugin</type>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.junit</groupId>-->
-<!--            <artifactId>junit-bom</artifactId>-->
-<!--            <version>5.13.4</version>-->
-<!--            <type>pom</type>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -141,13 +134,13 @@
             <version>1.13.4</version>
             <scope>main</scope>
         </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-selenide</artifactId>
-            <version>2.29.1</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        &lt;!&ndash; Source: https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>io.qameta.allure</groupId>-->
+<!--            <artifactId>allure-selenide</artifactId>-->
+<!--            <version>2.25.0</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
         <!-- Source: https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured -->
         <dependency>
             <groupId>io.qameta.allure</groupId>

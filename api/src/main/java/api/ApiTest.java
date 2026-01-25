@@ -8,6 +8,8 @@ import api.data.UserSex;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import io.qameta.allure.*;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
 
@@ -35,6 +37,8 @@ public class ApiTest {
         id = 6890;
         userId = 7179;
         Allure.step("init values success");
+
+        RestAssured.filters(new AllureRestAssured());
     }
 
     @Tag("Users")
@@ -44,12 +48,10 @@ public class ApiTest {
     @DisplayName("Проверка получения списка пользователей")
     @Test
     public void testGetUsers(){
-//        Allure.parameter("userID", userId);
         Allure.step("starting test get user", () -> {
             Allure.parameter("userID", userId);
             RaRequests.getUsers(userId);
         });
-//        RaRequests.getUsers(userId);
         Allure.step("test run successful");
     }
 
@@ -66,7 +68,7 @@ public class ApiTest {
         Allure.step("test get user info", () -> {
             RaRequests.getUserInfo(id);;
         });
-//        RaRequests.getUserInfo(id);
+        RaRequests.getUserInfo(id);
     }
 
     @Tag("Cars")
@@ -87,9 +89,10 @@ public class ApiTest {
             Assertions.assertEquals("Volvo",
                     jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
         });
-//        Assertions.assertEquals(response.getStatusCode(), 200);
-//        Assertions.assertEquals("Volvo",
-//                jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
+
+        Assertions.assertEquals(response.getStatusCode(), 200);
+        Assertions.assertEquals("Volvo",
+                jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
     }
 
     @Tag("Cars")
@@ -104,7 +107,7 @@ public class ApiTest {
         response = ApacheRequests.addCar(mazda_rx7);
 
         Assertions.assertNotNull(response);
-        Assertions.assertEquals(response.getStatusCode(), 200);
+        Assertions.assertEquals(200, response.getStatusCode());
     }
 
     @Tag("Users")
@@ -119,27 +122,8 @@ public class ApiTest {
         response = ApacheRequests.putUser(someUser);
 
         Assertions.assertNotNull(response);
-        try{
-            Assertions.assertEquals(response.getStatusCode(), 300);
-        }
-        catch (AssertionFailedError exc){
-            toFile(response.toString());
-            Allure.addAttachment("Answer", "allure-results/filename.txt");
+        Allure.addAttachment("Response", String.valueOf(response));
 
-            try {
-                Allure.addAttachment("File", new FileInputStream("allure-results/filename.txt"));
-            } catch (FileNotFoundException e) {
-                System.out.println("Файл не найден");
-            }
-        }
-    }
-
-    private void toFile(String text){
-        try (PrintWriter out = new PrintWriter("allure-results/filename.txt")) {
-            out.println(text);
-        }
-        catch (FileNotFoundException fnExc){
-            fnExc.printStackTrace();
-        }
+        Assertions.assertEquals(200, response.getStatusCode());
     }
 }

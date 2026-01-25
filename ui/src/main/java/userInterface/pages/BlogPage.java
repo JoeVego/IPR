@@ -1,5 +1,7 @@
 package userInterface.pages;
 
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,6 +31,9 @@ public class BlogPage {
             "/a[text()='автоматизация тестирования']")
     private WebElement atTagInSearchRes;
 
+    @FindBy(css = "div.uc-select-filter__loader")
+    private WebElement fkingLoader;
+
 
     public BlogPage(WebDriver driver) {
         this.webDriver = driver;
@@ -39,9 +44,10 @@ public class BlogPage {
         return blogHeader.isDisplayed();
     }
 
+    @Step("выбор автоматизации в списке категорий поиска")
     public void pickAutomatization(){
         WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.elementToBeClickable(searchListAuto));
+        wait.until(ExpectedConditions.invisibilityOf(fkingLoader));
         searchListAuto.click();
     }
 
