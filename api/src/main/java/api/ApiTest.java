@@ -13,9 +13,6 @@ import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
 import org.opentest4j.AssertionFailedError;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 
 @Epic("Апи тесты")
@@ -52,6 +49,7 @@ public class ApiTest {
             Allure.parameter("userID", userId);
             RaRequests.getUsers(userId);
         });
+
         Allure.step("test run successful");
     }
 
@@ -65,49 +63,68 @@ public class ApiTest {
     @Test
     public void testGetWithParams(){
         Allure.parameter("ID", id);
-        Allure.step("test get user info", () -> {
-            RaRequests.getUserInfo(id);;
-        });
-        RaRequests.getUserInfo(id);
+
+        Allure.step("test get user info", () -> RaRequests.getUserInfo(id));
     }
 
     @Tag("Cars")
     @Tag("Apache_http")
-    @Description("Проверка получения списка авто" +
-            "парсинг джейсона")
-    @DisplayName("Проверка получения списка авто" +
-            "парсинг джейсона")
+    @Description("Проверка получения списка авто парсинг джейсона")
+    @DisplayName("Проверка получения списка авто парсинг джейсона")
     @Test
     public void testGetCars(){
-        response = ApacheRequests.getCars();
-        Assertions.assertNotNull(response);
-        String respData = (String) response.getResponseBody();
-        JsonElement jsonElement = JsonParser.parseString(respData);
+        try {
+            response = ApacheRequests.getCars();
+            Assertions.assertNotNull(response);
+            Allure.step("Ответ получен");
 
-        Allure.step("is equals ?", () -> {
-            Assertions.assertEquals(response.getStatusCode(), 200);
-            Assertions.assertEquals("Volvo",
-                    jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
-        });
+            String respData = (String) response.getResponseBody();
+            JsonElement jsonElement = JsonParser.parseString(respData);
 
-        Assertions.assertEquals(response.getStatusCode(), 200);
-        Assertions.assertEquals("Volvo",
-                jsonElement.getAsJsonArray().get(10).getAsJsonObject().get("mark").getAsString());
+            Allure.step("Шаг проверок", () -> {
+                Assertions.assertEquals(response.getStatusCode(), 200);
+                Allure.step("код ответа корректен");
+
+                Assertions.assertEquals("Volvo",
+                        jsonElement.getAsJsonArray()
+                                .get(10)
+                                .getAsJsonObject()
+                                .get("mark")
+                                .getAsString());
+                Allure.step("значение марки корректно");
+            });
+        }
+        catch (AssertionError exc) {
+            throw new AssertionFailedError("Тест упал: " + exc.getMessage());
+
+        } catch (Exception exc) {
+            Allure.step("Произошла непредвиденная ошибка: " + exc.getMessage());
+            throw new RuntimeException(exc);
+        }
     }
 
     @Tag("Cars")
     @Tag("Apache_http")
-    @Description("Проверка добавления авто" +
-            "запрос с телом джейсоном")
-    @DisplayName("Проверка добавления авто" +
-            "запрос с телом джейсоном")
+    @Description("Проверка добавления авто запрос с телом джейсоном")
+    @DisplayName("Проверка добавления авто запрос с телом джейсоном")
     @Test
     public void testAddCar(){
-        Allure.parameter("car", mazda_rx7);
-        response = ApacheRequests.addCar(mazda_rx7);
+        try{
+            Allure.parameter("car", mazda_rx7);
+            response = ApacheRequests.addCar(mazda_rx7);
+            Allure.step("Запрос выполнен");
 
-        Assertions.assertNotNull(response);
-        Assertions.assertEquals(200, response.getStatusCode());
+            Assertions.assertNotNull(response);
+            Assertions.assertEquals(200, response.getStatusCode());
+            Allure.step("Получен успешный код ответа");
+        }
+        catch (AssertionError exc) {
+            throw new AssertionFailedError("Тест упал: " + exc.getMessage());
+        } catch (Exception exc) {
+            // Обработка других исключений
+            Allure.step("Произошла непредвиденная ошибка: " + exc.getMessage());
+            throw new RuntimeException(exc);
+        }
     }
 
     @Tag("Users")
@@ -118,12 +135,23 @@ public class ApiTest {
             "запрос с телом джейсоном")
     @Test
     public void testPutUser(){
-        Allure.parameter("user", someUser);
-        response = ApacheRequests.putUser(someUser);
+        try {
+            Allure.parameter("user", someUser);
+            response = ApacheRequests.putUser(someUser);
+            Allure.step("Запрос выполнен");
 
-        Assertions.assertNotNull(response);
-        Allure.addAttachment("Response", String.valueOf(response));
+            Assertions.assertNotNull(response);
+            Allure.addAttachment("Response", String.valueOf(response));
+            Assertions.assertEquals(200, response.getStatusCode());
+            Allure.step("Получен успешный код ответа");
+        }
+        catch (AssertionError exc) {
+            throw new AssertionFailedError("Тест упал: " + exc.getMessage());
 
-        Assertions.assertEquals(200, response.getStatusCode());
+        } catch (Exception exc) {
+            // Обработка других исключений
+            Allure.step("Произошла непредвиденная ошибка: " + exc.getMessage());
+            throw new RuntimeException(exc);
+        }
     }
 }

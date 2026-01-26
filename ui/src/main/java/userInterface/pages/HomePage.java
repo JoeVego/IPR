@@ -41,33 +41,41 @@ public class HomePage{
         PageFactory.initElements(driver, this);
     }
 
+    @Step("проверка отобрадения заголовка")
     public boolean isNewsHeadDisplayed(){
         return mainPageHeader.isDisplayed();
     }
 
+    @Step("нажатие на кнопку блога")
     public void blogButtonClick(){
         blogButton.click();
     }
 
+    @Step("нажать на кнопку заказа")
     public void orderButtonClick(){
         orderButton.click();
     }
 
+    @Step("нажать на кнопку карьеры")
     public void careerButtonClick(){
         careerButton.click();
     }
 
+    @Step("нажать на кнопку вакансий")
     public void vacancyButtonClick(){
         vacancyButton.click();
     }
 
+    @Step("нажать на кнопку продуктов")
     public void productsButtonClick(){
         productsButton.click();
     }
 
+    @Step("нажать на кнопку девопсов")
     public void devopsButtonClick(){
         devopsButton.click();
     }
 
+    @Step("нажать на кнопку кейсов")
     public void casesButtonClick(){casesButton.click();}
 }

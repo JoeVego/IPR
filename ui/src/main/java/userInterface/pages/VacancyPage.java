@@ -1,5 +1,6 @@
 package userInterface.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,10 +21,12 @@ public class VacancyPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("отображается ли заголовок вакансий")
     public boolean isVacancyHeaderDisplayed(){
         return vacancyHeader.isDisplayed();
     }
 
+    @Step("есть ли вакансии АТ")
     public boolean isAtVacanciesDisplayed(){
         By selector = By.xpath("//div[@class='uc_post_list_box']");
         List<WebElement> listOfElements = webDriver.findElements(selector);

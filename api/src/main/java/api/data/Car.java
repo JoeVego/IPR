@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 public class Car {
 
-    private String engineType;
-    private int id;
-    private String mark;
-    private String model;
-    private BigDecimal price;
+    private final String engineType;
+    private final int id;
+    private final String mark;
+    private final String model;
+    private final BigDecimal price;
 
     public Car(String engineType, int id, String mark, String model, BigDecimal price) {
         this.id = id;

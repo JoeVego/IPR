@@ -1,7 +1,6 @@
 package userInterface.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,12 +33,12 @@ public class BlogPage {
     @FindBy(css = "div.uc-select-filter__loader")
     private WebElement fkingLoader;
 
-
     public BlogPage(WebDriver driver) {
         this.webDriver = driver;
         PageFactory.initElements(webDriver, this);
     }
 
+    @Step("проверка отображения заголовка")
     public boolean isHeaderDisplayed(){
         return blogHeader.isDisplayed();
     }
@@ -51,6 +50,7 @@ public class BlogPage {
         searchListAuto.click();
     }
 
+    @Step("проверка отображения тэга АТ")
     public boolean isAtTagVisible(){
         return atTagInSearchRes.isDisplayed();
     }

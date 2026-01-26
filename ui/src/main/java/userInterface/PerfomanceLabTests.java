@@ -134,7 +134,7 @@ public class PerfomanceLabTests {
 
             Allure.step("Главная подсказка на месте", () -> {
                 orderWindow.sendButtonClick();
-                orderWindow.isMainTipDisplayed();
+                Assertions.assertTrue(orderWindow.isMainTipDisplayed());
                 Allure.step("Основная проверка присутствует");
             });
         }
@@ -166,12 +166,12 @@ public class PerfomanceLabTests {
             Allure.step("Открытие страницы вакансий", () -> {
                 homePage.careerButtonClick();
                 homePage.vacancyButtonClick();
-                vacancyPage.isVacancyHeaderDisplayed();
+                Assertions.assertTrue(vacancyPage.isVacancyHeaderDisplayed());
                 Allure.step("Заголовок вакансий пристуствует");
             });
 
             Allure.step("А есть ли Ат вакансии ?", () -> {
-                vacancyPage.isAtVacanciesDisplayed();
+                Assertions.assertTrue(vacancyPage.isAtVacanciesDisplayed());
                 //чтобы скрины были, а то при успехе 0 скринов в отчете)
                 takeScreenshot();
                 Allure.step("Вакансии Ат присутсвуют в Перфе");

@@ -1,5 +1,6 @@
 package userInterface.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,7 @@ public class DevopsPage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("клик по кнопке перехода в матрешку")
     public void matreshkaButtonClick(){
         matreshkaButton.click();
     }

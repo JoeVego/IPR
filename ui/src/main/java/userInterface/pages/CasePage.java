@@ -1,5 +1,6 @@
 package userInterface.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,18 +24,22 @@ public class CasePage {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("проверка отображения заголовка кейсов")
     public boolean isCasesHeaderDisplayed(){
         return casesHeader.isDisplayed();
     }
 
+    @Step("ввод текста поиска")
     public void enterSearchText(String searchText){
         searchField.sendKeys(searchText);
     }
 
+    @Step("клик по поиску")
     public void searchClick(){
         searchIcon.click();
     }
 
+    @Step("проверка результатов поиска")
     public int checkSearchResults(){
         By selector = By.xpath(
                 "//div[@class='" +

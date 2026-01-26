@@ -45,33 +45,41 @@ public class OrderWindow {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("отображается ли заголовок заказов")
     public boolean isOrderHeaderDisplayed(){
         return orderHeader.isDisplayed();
     }
 
+    @Step("отображается ли подсказка поля имя")
     public boolean isNameFiledTipDisplayed(){
         return nameFiledTip.isDisplayed();
     }
+    @Step("отображается ли подсказка поля емаил")
     public boolean isEmailFiledTipDisplayed(){
         return emailFieldTip.isDisplayed();
     }
 
+    @Step("отображается ли подсказка поля телефон")
     public boolean isPhoneFiledTipDisplayed(){
         return phoneFieldTip.isDisplayed();
     }
 
+    @Step("отображается ли подсказка поля орагнизация")
     public boolean isOrgFiledTipDisplayed(){
         return organizationFieldTip.isDisplayed();
     }
 
+    @Step("устанвоить чек бокс согласия в True")
     public void setAgreementCheckboxTrue(){
         agreementCheckBox.click();
     }
 
+    @Step("нажата кнопка Отправить")
     public void sendButtonClick(){
         sendButton.click();
     }
 
+    @Step("отображается ли главная подсказка")
     public boolean isMainTipDisplayed(){
         return mainTipOfFields.isDisplayed();
     }
