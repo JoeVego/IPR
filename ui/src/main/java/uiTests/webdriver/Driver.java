@@ -1,4 +1,4 @@
-package userInterface.webdriver;
+package uiTests.webdriver;
 
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;

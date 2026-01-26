@@ -1,12 +1,12 @@
-package userInterface;
+package uiTests;
 
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.opentest4j.AssertionFailedError;
 
-import userInterface.pages.*;
-import userInterface.webdriver.Driver;
+import uiTests.pages.*;
+import uiTests.webdriver.Driver;
 
 import java.io.ByteArrayInputStream;
 import java.time.Duration;

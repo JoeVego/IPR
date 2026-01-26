@@ -1,4 +1,4 @@
-package userInterface.pages;
+package uiTests.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;

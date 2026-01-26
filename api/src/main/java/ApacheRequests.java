@@ -1,8 +1,6 @@
-package api;
-
-import api.data.Car;
-import api.data.Response;
-import api.data.User;
+import data.Car;
+import data.Response;
+import data.User;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

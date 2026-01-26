@@ -1,4 +1,4 @@
-package api.data;
+package data;
 
 public enum UserSex {
     MALE,

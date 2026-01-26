@@ -1,9 +1,7 @@
-package api;
-
-import api.data.Car;
-import api.data.Response;
-import api.data.User;
-import api.data.UserSex;
+import data.Car;
+import data.Response;
+import data.User;
+import data.UserSex;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
