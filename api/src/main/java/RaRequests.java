@@ -43,11 +43,13 @@ class RaRequests {
                     .statusCode(200)
                     .body("cars[0].model.toString()",
                             CoreMatchers.equalTo("TestModel"));
+
             Allure.step("api method call successful");
         }
         catch (AssertionError exc) {
             throw new AssertionFailedError("Тест упал: " + exc.getMessage());
-        } catch (Exception exc) {
+        }
+        catch (Exception exc) {
             // Обработка других исключений
             Allure.step("Произошла непредвиденная ошибка: " + exc.getMessage());
             throw new RuntimeException(exc);

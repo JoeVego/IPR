@@ -1,5 +1,6 @@
 package uiTests.pages;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class VacancyPage {
 
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     @FindBy(xpath = "//h1[text()='Открытые вакансии']")
     private WebElement vacancyHeader;
@@ -23,7 +24,9 @@ public class VacancyPage {
 
     @Step("отображается ли заголовок вакансий")
     public boolean isVacancyHeaderDisplayed(){
-        return vacancyHeader.isDisplayed();
+        boolean isVacancyHeaderDisplayed = vacancyHeader.isDisplayed();
+        Allure.step("Заголовок вакансий пристуствует");
+        return isVacancyHeaderDisplayed;
     }
 
     @Step("есть ли вакансии АТ")
@@ -37,6 +40,8 @@ public class VacancyPage {
                 | webElement.getText().contains("Automation"))
                 .count();
 
-        return numOfAtVacancies > 0;
+        boolean isAtVacanciesDisplayed = numOfAtVacancies > 0;
+        Allure.step("Вакансии Ат присутсвуют в Перфе");
+        return isAtVacanciesDisplayed;
     }
 }

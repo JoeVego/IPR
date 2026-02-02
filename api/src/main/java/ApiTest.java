@@ -127,10 +127,8 @@ public class ApiTest {
 
     @Tag("Users")
     @Tag("Apache_http")
-    @Description("Проверка получения списка авто" +
-            "запрос пут")
-    @DisplayName("Проверка добавления авто" +
-            "запрос с телом джейсоном")
+    @Description("Проверка добавления пользователя")
+    @DisplayName("Проверка добавления пользователя")
     @Test
     public void testPutUser(){
         try {
@@ -139,7 +137,6 @@ public class ApiTest {
             Allure.step("Запрос выполнен");
 
             Assertions.assertNotNull(response);
-            Allure.addAttachment("Response", String.valueOf(response));
             Assertions.assertEquals(200, response.getStatusCode());
             Allure.step("Получен успешный код ответа");
         }

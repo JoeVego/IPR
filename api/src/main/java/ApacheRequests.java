@@ -5,6 +5,7 @@ import data.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.apache.http.ParseException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -19,6 +20,7 @@ import java.io.IOException;
 
 class ApacheRequests {
 
+    @Step("запрос получения списка авто")
     public static Response getCars(){
         Response response;
 
@@ -27,10 +29,12 @@ class ApacheRequests {
             HttpGet httpGetCars = new HttpGet("http://82.142.167.37:4879/cars");
 
             try (CloseableHttpResponse closeableResp = closeableHttpClient.execute(httpGetCars)) {
+                Allure.addAttachment("Request", String.valueOf(httpGetCars));
                 Allure.step("Гет запрос выполнен");
 
                 response = new Response(closeableResp.getStatusLine().getStatusCode(),
                         EntityUtils.toString(closeableResp.getEntity()));
+                Allure.addAttachment("Response", String.valueOf(response));
                 Allure.step("ответ сохранен");
 
             }catch (IOException | ParseException exception) {
@@ -46,8 +50,8 @@ class ApacheRequests {
         }
     }
 
+    @Step("запрос добавления авто")
     public static Response addCar(Car newCar){
-        Response response;
 
         try (CloseableHttpClient closeableHttpClient = HttpClients.createDefault()) {
             Gson carJson = new GsonBuilder().setPrettyPrinting().create();
@@ -61,25 +65,27 @@ class ApacheRequests {
             httpPost.setEntity(carStrEnt);
 
             try (CloseableHttpResponse closeableResp = closeableHttpClient.execute(httpPost)) {
+                Allure.addAttachment("Request", String.valueOf(httpPost));
                 Allure.step("Пост запрос выполнен");
 
-                response = new Response(closeableResp.getStatusLine().getStatusCode(),
+                Response response = new Response(closeableResp.getStatusLine().getStatusCode(),
                         EntityUtils.toString(closeableResp.getEntity()));
+                Allure.addAttachment("Response", String.valueOf(response));
                 Allure.step("ответ сохранен");
 
+                return response;
+
             }catch (IOException | ParseException exception) {
-                Allure.step("ошибка выполнения запроса");
                 exception.printStackTrace();
                 return null;
             }
-
-            return response;
         } catch (IOException | ParseException exception) {
             exception.printStackTrace();
-            return null;
+            throw new RuntimeException();
         }
     }
 
+    @Step("запрос добавления пользователя")
     public static Response putUser(User newUser){
         Response response;
 
@@ -95,11 +101,13 @@ class ApacheRequests {
             httpPut.setEntity(userEnt);
 
             try (CloseableHttpResponse closeableResp = closeableHttpClient.execute(httpPut)) {
+                Allure.addAttachment("Request", String.valueOf(httpPut));
                 Allure.step("Пут запрос выполнен");
 
                 response = new Response(
                         closeableResp.getStatusLine().getStatusCode(),
                         EntityUtils.toString(closeableResp.getEntity()));
+                Allure.addAttachment("Response", String.valueOf(response));
                 Allure.step("ответ сохранен");
 
             }catch (IOException | ParseException exception) {

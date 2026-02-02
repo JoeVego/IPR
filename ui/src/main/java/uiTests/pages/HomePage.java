@@ -1,5 +1,6 @@
 package uiTests.pages;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage{
 
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     @FindBy(xpath = "//img[@alt='Перфоманс Лаб логотип']")
     private WebElement mainPageHeader;
@@ -41,9 +42,12 @@ public class HomePage{
         PageFactory.initElements(driver, this);
     }
 
-    @Step("проверка отобрадения заголовка")
+    @Step("проверка отображения заголовка доамшней страницы")
     public boolean isNewsHeadDisplayed(){
-        return mainPageHeader.isDisplayed();
+        boolean isNewsHeadDisplayed = mainPageHeader.isDisplayed();
+        Allure.step("homePage opened");
+
+        return isNewsHeadDisplayed;
     }
 
     @Step("нажатие на кнопку блога")
@@ -69,11 +73,13 @@ public class HomePage{
     @Step("нажать на кнопку продуктов")
     public void productsButtonClick(){
         productsButton.click();
+        Allure.step("нажали на Услуги и продукты главного меню");
     }
 
     @Step("нажать на кнопку девопсов")
     public void devopsButtonClick(){
         devopsButton.click();
+        Allure.step("выбрали пнукт Внедрение ДевОпс");
     }
 
     @Step("нажать на кнопку кейсов")

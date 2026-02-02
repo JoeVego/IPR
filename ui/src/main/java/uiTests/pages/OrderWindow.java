@@ -1,14 +1,20 @@
 package uiTests.pages;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class OrderWindow {
 
-    private WebDriver webDriver;
+    private final WebDriver webDriver;
 
     @FindBy(xpath = "//h4[text()='Свяжитесь с нами']")
     private WebElement orderHeader;
@@ -47,7 +53,9 @@ public class OrderWindow {
 
     @Step("отображается ли заголовок заказов")
     public boolean isOrderHeaderDisplayed(){
-        return orderHeader.isDisplayed();
+        boolean isOrderHeaderDisplayed = orderHeader.isDisplayed();
+        Allure.step("нажали кнопку заказа");
+        return isOrderHeaderDisplayed;
     }
 
     @Step("отображается ли подсказка поля имя")
@@ -72,6 +80,7 @@ public class OrderWindow {
     @Step("устанвоить чек бокс согласия в True")
     public void setAgreementCheckboxTrue(){
         agreementCheckBox.click();
+        Allure.step("чекбокс согласия установлен");
     }
 
     @Step("нажата кнопка Отправить")
@@ -81,8 +90,33 @@ public class OrderWindow {
 
     @Step("отображается ли главная подсказка")
     public boolean isMainTipDisplayed(){
-        return mainTipOfFields.isDisplayed();
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(20));
+        wait.until(ExpectedConditions.visibilityOf(mainTipOfFields));
+
+        boolean isMainTipDisplayed = mainTipOfFields.isDisplayed();
+        Allure.step("Основная подсказка присутствует");
+        return isMainTipDisplayed;
     }
 
+    @Step("проверка отображение дополнительных подсказок")
+    public void isAdditionalTipsDisplayed() {
+        Allure.step("Проверка подсказки заполнения емаил", () -> {
+            Assertions.assertTrue(isEmailFiledTipDisplayed());
+            Allure.step("емаил на месте");
+        });
+        Allure.step("Проверка подсказки заполнения имени", () -> {
+            Assertions.assertTrue(isNameFiledTipDisplayed());
+            Allure.step("имя на месте");
+        });
+        Allure.step("Проверка подсказки заполнения орг", () -> {
+            Assertions.assertTrue(isOrgFiledTipDisplayed());
+            Allure.step("орг на месте");
+        });
+        Allure.step("Проверка подсказки заполнения телефона", () -> {
+            Assertions.assertTrue(isPhoneFiledTipDisplayed());
+            Allure.step("телефон на месте");
+        });
+        Allure.step("все подсказки присутствуют");
+    }
 
 }
