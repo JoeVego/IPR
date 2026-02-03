@@ -1,4 +1,3 @@
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import org.hamcrest.CoreMatchers;
@@ -9,7 +8,7 @@ class RaRequests {
     /**
      * проверка гет запроса
      */
-    @Step
+    @Step("Вызовы методе получения пользователя по айди")
     static void getUsers(int id){
         try {
             RestAssured.given()
@@ -20,7 +19,6 @@ class RaRequests {
                     .assertThat()
                     .statusCode(200)
                     .body("[0].id", CoreMatchers.equalTo(id));
-            Allure.step("вызов метода успешен");
         }
         catch (AssertionError exc) {
             throw new AssertionFailedError("Тест упал: " + exc.getMessage());
@@ -30,7 +28,7 @@ class RaRequests {
         }
     }
 
-    @Step
+    @Step("Получение информации пользователя по айди")
     static void getUserInfo(int id){
         try {
             RestAssured.given()
@@ -42,8 +40,6 @@ class RaRequests {
                     .statusCode(200)
                     .body("cars[0].model.toString()",
                             CoreMatchers.equalTo("TestModel"));
-
-            Allure.step("api method call successful");
         }
         catch (AssertionError exc) {
             throw new AssertionFailedError("Тест упал: " + exc.getMessage());
