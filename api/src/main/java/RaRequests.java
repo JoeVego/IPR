@@ -24,10 +24,9 @@ class RaRequests {
         }
         catch (AssertionError exc) {
             throw new AssertionFailedError("Тест упал: " + exc.getMessage());
-        } catch (Exception exc) {
-            // Обработка других исключений
-            Allure.step("Произошла непредвиденная ошибка: " + exc.getMessage());
-            throw new RuntimeException(exc);
+        }
+        catch (Exception exc) {
+            throw new RuntimeException("Произошла непредвиденная ошибка: " + exc.getMessage());
         }
     }
 
@@ -50,9 +49,7 @@ class RaRequests {
             throw new AssertionFailedError("Тест упал: " + exc.getMessage());
         }
         catch (Exception exc) {
-            // Обработка других исключений
-            Allure.step("Произошла непредвиденная ошибка: " + exc.getMessage());
-            throw new RuntimeException(exc);
+            throw new RuntimeException("Произошла непредвиденная ошибка: " + exc.getMessage());
         }
     }
 }
