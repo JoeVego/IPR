@@ -58,20 +58,20 @@ public class PerfomanceLabTests {
     public void testBlogSearch() {
         Allure.step("Открытие главной страницы", () -> {
             webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
         });
 
         Allure.step("открытие страницы блога", () -> {
             homePage.blogButtonClick();
-            Assertions.assertTrue(blogPage.isHeaderDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(blogPage.isHeaderDisplayed());
         });
 
         Allure.step("проверка выбора тематики АТ", () -> {
             blogPage.pickAutomatization();
-            Assertions.assertTrue(blogPage.isAtTagVisible());
             takeScreenshot();
+            Assertions.assertTrue(blogPage.isAtTagVisible());
         });
     }
 
@@ -85,30 +85,30 @@ public class PerfomanceLabTests {
     public void testRequiredFieldsCheck() {
         Allure.step("Открытие главной страницы", () -> {
             webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
         });
 
         Allure.step("Открытие окна заказа", () -> {
             homePage.orderButtonClick();
-            Assertions.assertTrue(orderWindow.isOrderHeaderDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(orderWindow.isOrderHeaderDisplayed());
         });
 
         Allure.step("Выбрать согласие", () -> {
-            orderWindow.setAgreementCheckboxTrue();
             takeScreenshot();
+            orderWindow.setAgreementCheckboxTrue();
         });
 
         Allure.step("Проверка подсказок", () -> {
-            orderWindow.isAdditionalTipsDisplayed();
             takeScreenshot();
+            orderWindow.isAdditionalTipsDisplayed();
         });
 
         Allure.step("Главная подсказка на месте", () -> {
             orderWindow.sendButtonClick();
-            Assertions.assertTrue(orderWindow.isMainTipDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(orderWindow.isMainTipDisplayed());
         });
     }
 
@@ -122,19 +122,20 @@ public class PerfomanceLabTests {
     public void testVacancySearch() {
         Allure.step("Открытие главной страницы", () -> {
             webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
         });
 
         Allure.step("Открытие страницы вакансий", () -> {
             homePage.careerButtonClick();
             homePage.vacancyButtonClick();
+            takeScreenshot();
             Assertions.assertTrue(vacancyPage.isVacancyHeaderDisplayed());
         });
 
         Allure.step("А есть ли Ат вакансии ?", () -> {
-            Assertions.assertTrue(vacancyPage.isAtVacanciesDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(vacancyPage.isAtVacanciesDisplayed());
         });
     }
 
@@ -148,8 +149,8 @@ public class PerfomanceLabTests {
     public void testVkLinks() {
         Allure.step("Открытие главной страницы", () -> {
             webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
         });
 
         Allure.step("Навигация по меню", () -> {
@@ -164,8 +165,8 @@ public class PerfomanceLabTests {
             waitInSeconds(5);
             Allure.step("Сделали скролл для подгрузки страницы");
 
-            devopsPage.matreshkaButtonClick();
             takeScreenshot();
+            devopsPage.matreshkaButtonClick();
         });
 
         Allure.step("Переключились на страницу матрешки", () -> {
@@ -175,10 +176,10 @@ public class PerfomanceLabTests {
 
         Allure.step("Проверка переключения на ссылку матрешки", () -> {
             waitInSeconds(10);
+            takeScreenshot();
             Assertions.assertEquals(webDriver.getCurrentUrl(),
                     "https://www.performance-lab.ru/itmatreshka/");
             Allure.step("Страница матрешки открылась");
-            takeScreenshot();
         });
     }
 
@@ -193,27 +194,26 @@ public class PerfomanceLabTests {
 
         Allure.step("Открытие главной страницы", () -> {
             webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
         });
 
         Allure.step("Переход на страницу кейсов", () -> {
             homePage.casesButtonClick();
-            Assertions.assertTrue(casePage.isCasesHeaderDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(casePage.isCasesHeaderDisplayed());
         });
 
         Allure.step("Переход на страницу кейсов", () -> {
             casePage.enterSearchText("диверсифицированной");
             casePage.searchClick();
-            takeScreenshot();
         });
 
         Allure.step("Переход на страницу кейсов", () -> {
             waitInSeconds(3);
+            takeScreenshot();
             Assertions.assertEquals(1, casePage.checkSearchResults());
             Allure.step("Найдена 1 статья о ЦФТ");
-            takeScreenshot();
         });
     }
 
@@ -227,8 +227,8 @@ public class PerfomanceLabTests {
     public void testFailed() {
         Allure.step("Главное страницу открываем", () -> {
             webDriver.get(getProperty("homepage"));
-            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
             takeScreenshot();
+            Assertions.assertTrue(homePage.isNewsHeadDisplayed());
         });
 
         Allure.step("Але хоп, падаем тут", () -> {
