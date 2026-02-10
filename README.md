@@ -7,8 +7,8 @@
 
 Структура проекта:
 
-    - api/src/main/java/ApiTest.java  — файл запуска API автотестов
-    - ui/src/main/java/uiTests/PerfomanceLabTests.java — файл запуска UI автотестов
+    - api/src/test/java/ApiTest.java  — файл запуска API автотестов
+    - ui/src/test/java/PerfomanceLabTests.java — файл запуска UI автотестов
     - pom.xml — файл конфигурации Maven с зависимостями
 
 Для запуска автотестов:

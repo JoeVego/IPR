@@ -1,11 +1,10 @@
-package uiTests;
-
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.*;
 import org.opentest4j.AssertionFailedError;
 
+import uiTests.CustomException;
 import uiTests.pages.*;
 import uiTests.webdriver.Driver;
 
