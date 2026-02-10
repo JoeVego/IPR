@@ -19,6 +19,5 @@
 4. Для сборки аллюр отчета введите в терминале команду: allure serve
 
 Пример аллюр-отчета.
-![Text](allure_main.JPG)
-![Text](allire_api.JPG)
-![Text](allire_ui_failed.JPG)
+![Text](allire_api2.JPG)
+![Text](allire_ui.JPG)
