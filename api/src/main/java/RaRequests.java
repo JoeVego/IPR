@@ -8,7 +8,7 @@ class RaRequests {
     /**
      * проверка гет запроса
      */
-    @Step("Вызовы методе получения пользователя по айди")
+    @Step("Вызовы методе получения пользователя по айди: {id}")
     static void getUsers(int id){
         try {
             RestAssured.given()
@@ -28,7 +28,7 @@ class RaRequests {
         }
     }
 
-    @Step("Получение информации пользователя по айди")
+    @Step("Получение информации пользователя по айди: {id}")
     static void getUserInfo(int id){
         try {
             RestAssured.given()

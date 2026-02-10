@@ -62,13 +62,13 @@ public class PerfomanceLabTests {
             Assertions.assertTrue(homePage.isNewsHeadDisplayed());
         });
 
-        Allure.step("открытие страницы блога", () -> {
+        Allure.step("Открытие страницы блога", () -> {
             homePage.blogButtonClick();
             takeScreenshot();
             Assertions.assertTrue(blogPage.isHeaderDisplayed());
         });
 
-        Allure.step("проверка выбора тематики АТ", () -> {
+        Allure.step("Проверка выбора тематики АТ", () -> {
             blogPage.pickAutomatization();
             takeScreenshot();
             Assertions.assertTrue(blogPage.isAtTagVisible());
@@ -204,12 +204,12 @@ public class PerfomanceLabTests {
             Assertions.assertTrue(casePage.isCasesHeaderDisplayed());
         });
 
-        Allure.step("Переход на страницу кейсов", () -> {
+        Allure.step("Поиск", () -> {
             casePage.enterSearchText("диверсифицированной");
             casePage.searchClick();
         });
 
-        Allure.step("Переход на страницу кейсов", () -> {
+        Allure.step("Проверка статьи", () -> {
             waitInSeconds(3);
             takeScreenshot();
             Assertions.assertEquals(1, casePage.checkSearchResults());
@@ -225,7 +225,7 @@ public class PerfomanceLabTests {
     @ExtendWith(CustomException.class)
     @Test
     public void testFailed() {
-        Allure.step("Главное страницу открываем", () -> {
+        Allure.step("Открытие главной страницы", () -> {
             webDriver.get(getProperty("homepage"));
             takeScreenshot();
             Assertions.assertTrue(homePage.isNewsHeadDisplayed());
