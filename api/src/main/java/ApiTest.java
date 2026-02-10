@@ -43,12 +43,11 @@ public class ApiTest {
     @DisplayName("Проверка получения списка пользователей")
     @Test
     public void testGetUsers(){
-        Allure.step("starting test get user", () -> {
+        Allure.step("Выполнение запроса получения пользвовате" +
+                "лей", () -> {
             Allure.parameter("userID", userId);
             RaRequests.getUsers(userId);
         });
-
-        Allure.step("test run successful");
     }
 
     @Tag("Users")

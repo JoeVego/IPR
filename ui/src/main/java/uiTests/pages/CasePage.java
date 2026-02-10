@@ -1,6 +1,5 @@
 package uiTests.pages;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,9 +26,7 @@ public class CasePage {
 
     @Step("проверка отображения заголовка кейсов")
     public boolean isCasesHeaderDisplayed(){
-        boolean isCasesHeaderDisplayed = casesHeader.isDisplayed();
-        Allure.step("Перешли на страницу кейсов");
-        return isCasesHeaderDisplayed;
+        return casesHeader.isDisplayed();
     }
 
     @Step("ввод текста поиска")
@@ -37,10 +34,9 @@ public class CasePage {
         searchField.sendKeys(searchText);
     }
 
-    @Step("клик по поиску")
+    @Step("Выполнить поиск")
     public void searchClick(){
         searchIcon.click();
-        Allure.step("Выполнили поиск по кейсам");
     }
 
     @Step("проверка результатов поиска")

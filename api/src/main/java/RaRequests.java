@@ -23,9 +23,6 @@ class RaRequests {
         catch (AssertionError exc) {
             throw new AssertionFailedError("Тест упал: " + exc.getMessage());
         }
-        catch (Exception exc) {
-            throw new RuntimeException("Произошла непредвиденная ошибка: " + exc.getMessage());
-        }
     }
 
     @Step("Получение информации пользователя по айди: {id}")
@@ -43,9 +40,6 @@ class RaRequests {
         }
         catch (AssertionError exc) {
             throw new AssertionFailedError("Тест упал: " + exc.getMessage());
-        }
-        catch (Exception exc) {
-            throw new RuntimeException("Произошла непредвиденная ошибка: " + exc.getMessage());
         }
     }
 }

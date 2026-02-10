@@ -1,6 +1,5 @@
 package uiTests.pages;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,12 +38,9 @@ public class BlogPage {
         PageFactory.initElements(webDriver, this);
     }
 
-    @Step("проверка отображения заголовка")
+    @Step("проверка отображения заголовка Блога")
     public boolean isHeaderDisplayed(){
-        boolean isHeaderDisplayed = blogHeader.isDisplayed();
-        Allure.step("перешли на страницу блога");
-
-        return isHeaderDisplayed;
+        return blogHeader.isDisplayed();
     }
 
     @Step("выбор автоматизации в списке категорий поиска")
@@ -52,13 +48,10 @@ public class BlogPage {
         WebDriverWait wait = new WebDriverWait(this.webDriver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.invisibilityOf(fkingLoader));
         searchListAuto.click();
-        Allure.step("В списке выбрана Автоматизация");
     }
 
     @Step("проверка отображения тэга АТ")
     public boolean isAtTagVisible(){
-        boolean isAtTagVisible = atTagInSearchRes.isDisplayed();
-        Allure.step("Тэг автоматизации отображается в первой карточке поиска");
-        return isAtTagVisible;
+        return atTagInSearchRes.isDisplayed();
     }
 }

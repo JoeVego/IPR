@@ -1,6 +1,5 @@
 package uiTests.pages;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +21,6 @@ public class DevopsPage {
     @Step("клик по кнопке перехода в матрешку")
     public void matreshkaButtonClick(){
         matreshkaButton.click();
-        Allure.step("Нажали на ссылку матрешки");
     }
 
 }
