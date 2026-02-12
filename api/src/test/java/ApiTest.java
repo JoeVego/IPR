@@ -29,6 +29,9 @@ public class ApiTest {
                 "Mazda", "RX-7", new BigDecimal(7_000_000));
         someUser = new User(21, "Joe",
                 991, new BigDecimal("2334.4"), "Vego", UserSex.MALE);
+        idGetUsers = 7179;
+        idUserInfo = 6890;
+
         Allure.step("init values success");
         RestAssured.filters(new AllureRestAssured());
     }
@@ -40,7 +43,6 @@ public class ApiTest {
     @DisplayName("Проверка получения списка пользователей")
     @Test
     public void testGetUsers(){
-        idGetUsers = 7179;
         Allure.step("Выполнение запроса получения пользвовате" +
                 "лей", () -> {
             Allure.parameter("userID", idGetUsers);
@@ -57,7 +59,6 @@ public class ApiTest {
     @Owner("Pupa")
     @Test
     public void testGetWithParams(){
-        idUserInfo = 6890;
         Allure.parameter("ID", idUserInfo);
         Allure.step("test get user info", () -> RaRequests.getUserInfo(idUserInfo));
     }
