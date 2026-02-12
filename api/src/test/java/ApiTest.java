@@ -20,19 +20,16 @@ public class ApiTest {
     private Car mazda_rx7;
     private User someUser;
     private Response response;
-    private int id;
-    private int userId;
+    private int idUserInfo;
+    private int idGetUsers;
 
     @BeforeEach
-    void init() {
+    public void init() {
         mazda_rx7 = new Car("Diesel",98111,
                 "Mazda", "RX-7", new BigDecimal(7_000_000));
         someUser = new User(21, "Joe",
                 991, new BigDecimal("2334.4"), "Vego", UserSex.MALE);
-        id = 6890;
-        userId = 7179;
         Allure.step("init values success");
-
         RestAssured.filters(new AllureRestAssured());
     }
 
@@ -43,10 +40,11 @@ public class ApiTest {
     @DisplayName("Проверка получения списка пользователей")
     @Test
     public void testGetUsers(){
+        idGetUsers = 7179;
         Allure.step("Выполнение запроса получения пользвовате" +
                 "лей", () -> {
-            Allure.parameter("userID", userId);
-            RaRequests.getUsers(userId);
+            Allure.parameter("userID", idGetUsers);
+            RaRequests.getUsers(idGetUsers);
         });
     }
 
@@ -59,9 +57,9 @@ public class ApiTest {
     @Owner("Pupa")
     @Test
     public void testGetWithParams(){
-        Allure.parameter("ID", id);
-
-        Allure.step("test get user info", () -> RaRequests.getUserInfo(id));
+        idUserInfo = 6890;
+        Allure.parameter("ID", idUserInfo);
+        Allure.step("test get user info", () -> RaRequests.getUserInfo(idUserInfo));
     }
 
     @Tag("Cars")

@@ -8,7 +8,7 @@ class RaRequests {
      * проверка гет запроса
      */
     @Step("Вызовы методе получения пользователя по айди: {id}")
-    static void getUsers(int id) {
+    static void getUsers(int compare_id) {
         RestAssured.given()
                 .header("accept", "application/json")
                 .when()
@@ -16,7 +16,7 @@ class RaRequests {
                 .then()
                 .assertThat()
                 .statusCode(200)
-                .body("[0].id", CoreMatchers.equalTo(id));
+                .body("[0].id", CoreMatchers.equalTo(compare_id));
     }
 
     @Step("Получение информации пользователя по айди: {id}")
