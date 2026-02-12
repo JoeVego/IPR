@@ -14,7 +14,7 @@ public class Driver {
 
     public Driver() {
         FirefoxOptions options = new FirefoxOptions();
-//        options.addArguments("--headless");
+        options.addArguments("--headless");
 
         driver = new FirefoxDriver(options);
         Allure.step("driver initialized");
