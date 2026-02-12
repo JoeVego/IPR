@@ -96,6 +96,7 @@ public class PerfomanceLabTests {
 
         Allure.step("Выбрать согласие", () -> {
             takeScreenshot();
+            orderWindow.cookiesButtonClick();
             orderWindow.setAgreementCheckboxTrue();
         });
 

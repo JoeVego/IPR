@@ -46,6 +46,9 @@ public class OrderWindow {
             "//div[@class='wpcf7-response-output']")
     private WebElement mainTipOfFields;
 
+    @FindBy(xpath = "//button[@data-cky-tag='accept-button']")
+    private WebElement cookiesBtn;
+
     public OrderWindow(WebDriver driver) {
         webDriver = driver;
         PageFactory.initElements(driver, this);
@@ -84,6 +87,9 @@ public class OrderWindow {
     public void sendButtonClick(){
         sendButton.click();
     }
+
+    @Step("Нажатие кнопки Принять куки")
+    public void cookiesButtonClick(){cookiesBtn.click(); }
 
     @Step("Проверка отображения главной подсказки")
     public boolean isMainTipDisplayed(){
