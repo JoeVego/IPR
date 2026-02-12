@@ -3,6 +3,7 @@ package uiTests.webdriver;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class Driver {
     private WebDriver driver;
@@ -12,7 +13,10 @@ public class Driver {
     }
 
     public Driver() {
-        driver = new FirefoxDriver();
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--headless");
+
+        driver = new FirefoxDriver(options);
         Allure.step("driver initialized");
 
         driver.manage().window().maximize();
