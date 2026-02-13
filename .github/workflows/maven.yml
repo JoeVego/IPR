@@ -35,6 +35,11 @@ jobs:
       - name: Build and run tests with Maven
         run: mvn -B test --file pom.xml
 
+      - name: Проверка содержимого allure-results
+        run: |
+          ls -l api/allure-results
+          ls -l ui/allure-results
+
       - name: Generate Allure report
         run: |
           allure generate --clean -o allure-report --results api/allure-results ui/allure-results
