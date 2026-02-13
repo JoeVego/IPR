@@ -42,8 +42,8 @@ jobs:
 
       - name: Generate Allure reports for API and UI
         run: |
-          allure generate api -o allure-report-api --clean
-          allure generate ui -o allure-report-ui --clean
+          allure generate api/allure-results -o allure-report-api --clean
+          allure generate ui/allure-results -o allure-report-ui --clean
 
       - name: Upload Allure reports as artifacts
         uses: actions/upload-artifact@v4
