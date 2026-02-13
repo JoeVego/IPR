@@ -30,7 +30,7 @@ jobs:
         run: |
           wget -O /tmp/allure.tgz https://github.com/allure-framework/allure2/releases/latest/download/allure-2.24.0.tgz
           tar -xzf /tmp/allure.tgz -C /opt
-          sudo ln -s /opt/allure-2.24.0/bin/allure /usr/local/bin/allure
+          sudo ln -s /opt/allure-2.27.0/bin/allure /usr/local/bin/allure
 
       - name: Build and run tests with Maven
         run: mvn -B test --file pom.xml
