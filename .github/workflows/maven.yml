@@ -40,12 +40,22 @@ jobs:
           ls -l api/allure-results
           ls -l ui/allure-results
 
-      - name: Generate Allure report
+      - name: Generate Allure reports for API and UI
         run: |
-          allure generate --clean -o allure-report --results api/allure-results ui/allure-results
+          # Генерация отчета для api/allure-results
+          allure generate api/allure-results -o allure-report-api --clean
 
-      - name: Upload Allure report as artifact
+          # Генерация отчета для ui/allure-results
+          allure generate ui/allure-results -o allure-report-ui --clean
+
+      - name: Upload Allure reports as artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
-          path: allure-report
+          name: allure-report-api
+          path: allure-report-api
+
+      - name: Upload UI Allure report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report-ui
+          path: allure-report-ui
